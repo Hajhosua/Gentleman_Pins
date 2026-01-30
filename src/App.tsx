@@ -1,4 +1,4 @@
-import { Routes, Route, NavLink } from 'react-router-dom';
+import { Routes, Route, NavLink, Navigate } from 'react-router-dom';
 import Pines from './pages/Pines';
 import PisaCorbatas from './pages/PisaCorbatas';
 import './App.css';
@@ -19,7 +19,10 @@ function App() {
       </nav>
 
       <Routes>
-        <Route path="/" element={<h2>Bienvenido</h2>} />
+        {/* Redirección automática */}
+        <Route path="/" element={<Navigate to="/pines" replace />} />
+
+        {/* Páginas */}
         <Route path="/pines" element={<Pines />} />
         <Route path="/pisacorbat" element={<PisaCorbatas />} />
       </Routes>
