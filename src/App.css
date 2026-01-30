@@ -1,0 +1,60 @@
+/* CONTENEDOR */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 15px;
+}
+
+/* TÍTULO */
+.titulo {
+  text-align: center;
+  color: #004aad;
+  margin-bottom: 20px;
+}
+
+/* NAV GENERAL */
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+/* BOTONES NAV */
+.nav-btn {
+  padding: 10px 18px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  color: #004aad;
+  background: #eaf1ff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+  transition: all 0.2s ease;
+}
+
+/* ACTIVO */
+.nav-btn.active {
+  background: #004aad;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* EFECTO */
+.nav-btn:active {
+  transform: scale(0.95);
+}
+
+/* 🔥 SOLO CELULAR */
+@media (max-width: 768px) {
+  .nav {
+    gap: 10px;
+  }
+
+  .nav-btn {
+    flex: 1;
+    min-width: 120px;
+    text-align: center;
+    font-size: 14px;
+  }
+}
