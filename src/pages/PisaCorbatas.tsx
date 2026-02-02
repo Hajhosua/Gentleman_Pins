@@ -1,16 +1,14 @@
 import { useState } from 'react';
-import pinBateria from '../imagenes/pisacorbatarayo.webp';
-  import pisapiano from '../imagenes/pisapiano.webp';
-  import pisacorne from '../imagenes/pisacorne.webp';
-  import pisacorbatagris from '../imagenes/pisacorbaragris.webp';
-  import pisacorrr from '../imagenes/pisacorrr.webp';
 
+import wppIcon from '../imagenes/whppp.svg';
+
+import pinBateria from '../imagenes/pisacorbatarayo.webp';
+import pisaPiano from '../imagenes/pisapiano.webp';
+import pisaCorne from '../imagenes/pisacorne.webp';
+import pisaCorbataGris from '../imagenes/pisacorbaragris.webp';
+import pisaRayo from '../imagenes/pisacorrr.webp';
 
 import './css/Baquetas.css';
-
-/* =====================
-   Tipos e interfaces
-===================== */
 
 interface Producto {
   id: number;
@@ -19,10 +17,6 @@ interface Producto {
   imagenes: string[];
   wpp: string;
 }
-
-/* =====================
-   Datos
-===================== */
 
 const productos: Producto[] = [
   {
@@ -36,62 +30,49 @@ const productos: Producto[] = [
     id: 2,
     nombre: 'Pisacorbata piano metálico',
     precio: '15.000',
-    imagenes: [pisapiano],
+    imagenes: [pisaPiano],
     wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pisacorbata%20de%20piano',
   },
   {
     id: 3,
     nombre: 'Pisacorbata corno metálico',
     precio: '15.000',
-    imagenes: [pisacorne],
+    imagenes: [pisaCorne],
     wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pisacorbata%20de%20corno',
   },
   {
     id: 4,
     nombre: 'Pisacorbata gris metálico',
     precio: '15.000',
-    imagenes: [pisacorbatagris],
+    imagenes: [pisaCorbataGris],
     wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pisacorbata%20gris',
   },
-  
   {
     id: 5,
     nombre: 'Pisacorbata rayo metálico',
     precio: '15.000',
-    imagenes: [pisacorrr],
+    imagenes: [pisaRayo],
     wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pisacorbata%20rayo',
   },
 ];
 
-/* =====================
-   Componente
-===================== */
-
 export default function PisaCorbatas() {
-  const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [imagenesSeleccionadas, setImagenesSeleccionadas] = useState<string[]>([]);
 
-  /* =====================
-     Funciones
-  ===================== */
-
-  const abrirModal = (imagenes: string[]) => {
+  const abrirModal = (imagenes: string[]): void => {
     setImagenesSeleccionadas(imagenes);
     setModalOpen(true);
   };
 
-  const cerrarModal = () => {
+  const cerrarModal = (): void => {
     setModalOpen(false);
     setImagenesSeleccionadas([]);
   };
 
-  /* =====================
-     Render
-  ===================== */
-
   return (
     <div className="productos">
-      <h2>Pines Disponibles</h2>
+      <h2>Pisa Corbatas Disponibles</h2>
 
       <div className="grid-productos">
         {productos.map((prod) => (
@@ -99,8 +80,12 @@ export default function PisaCorbatas() {
             key={prod.id}
             className="producto"
             onClick={() => abrirModal(prod.imagenes)}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') abrirModal(prod.imagenes);
+            }}
           >
-            {/* Imagen principal */}
             <img src={prod.imagenes[0]} alt={prod.nombre} />
 
             <p>{prod.nombre}</p>
@@ -112,21 +97,25 @@ export default function PisaCorbatas() {
               rel="noopener noreferrer"
               className="wpp-btn"
               onClick={(e) => e.stopPropagation()}
+              aria-label={`Pedir por WhatsApp: ${prod.nombre}`}
+              title="Pedir por WhatsApp"
             >
-              Preguntar por WhatsApp y por domisilio
+              <img src={wppIcon} alt="WhatsApp" className="wpp-icon" />
+              <span className="wpp-text">Pedir por WhatsApp</span>
             </a>
           </div>
         ))}
       </div>
 
-      {/* Modal */}
       {modalOpen && (
         <div className="modal" onClick={cerrarModal}>
-          <span className="cerrar">&times;</span>
+          <span className="cerrar" onClick={cerrarModal}>
+            &times;
+          </span>
 
-          <div className="modal-galeria">
+          <div className="modal-galeria" onClick={(e) => e.stopPropagation()}>
             {imagenesSeleccionadas.map((img, index) => (
-              <img key={index} src={img} alt="Producto" />
+              <img key={index} src={img} alt={`Producto ${index + 1}`} />
             ))}
           </div>
         </div>
