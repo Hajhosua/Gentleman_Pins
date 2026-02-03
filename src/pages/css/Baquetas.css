@@ -5,12 +5,12 @@
 
 *,
 *::before,
-*::after {
+*::after{
   box-sizing: border-box;
 }
 
-:root {
-  /* Texto normal */
+:root{
+  /* Texto */
   --text: #222;
   --title: #2f2f3a;
 
@@ -40,7 +40,7 @@
 /* =========================================================
    2) BODY + FONDO
 ========================================================= */
-body {
+body{
   margin: 0;
   font-family: 'Poppins', sans-serif;
   color: var(--text);
@@ -56,8 +56,7 @@ body {
   background-attachment: fixed;
 }
 
-/* Capa suave tipo "neblina" */
-body::before {
+body::before{
   content: "";
   position: fixed;
   inset: -40vmax;
@@ -73,21 +72,20 @@ body::before {
   opacity: 0.85;
 }
 
-/* En algunos móviles, fixed puede dar tirones */
-@media (max-width: 768px) {
-  body { background-attachment: scroll; }
+@media (max-width: 768px){
+  body{ background-attachment: scroll; }
 }
 
 /* =========================================================
    3) CONTENEDOR GENERAL
 ========================================================= */
-.productos {
+.productos{
   padding: 26px;
   max-width: 1400px;
   margin: 0 auto;
 }
 
-.productos h2 {
+.productos h2{
   font-size: 26px;
   font-weight: 600;
   color: var(--title);
@@ -99,7 +97,7 @@ body::before {
 /* =========================================================
    4) GRID
 ========================================================= */
-.grid-productos {
+.grid-productos{
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 28px;
@@ -108,7 +106,7 @@ body::before {
 /* =========================================================
    5) TARJETA DE PRODUCTO
 ========================================================= */
-.producto {
+.producto{
   position: relative;
   background: var(--card-bg);
   border: 1px solid var(--card-border);
@@ -131,8 +129,7 @@ body::before {
   outline: 1px solid transparent;
 }
 
-/* Luz cálida dentro de la tarjeta */
-.producto::before {
+.producto::before{
   content: "";
   position: absolute;
   inset: 0;
@@ -140,32 +137,27 @@ body::before {
   pointer-events: none;
 
   background:
-    linear-gradient(
-      180deg,
-      rgba(255, 226, 205, 0.42) 0%,
-      rgba(255, 226, 205, 0.12) 22%,
-      transparent 55%
-    );
+    linear-gradient(180deg, rgba(255, 226, 205, 0.42) 0%, rgba(255, 226, 205, 0.12) 22%, transparent 55%);
   opacity: 0.55;
 }
 
-.producto:hover {
+.producto:hover{
   transform: translateY(-6px);
-  background: rgba(255,255,255,0.97);
 
   box-shadow:
     0 20px 44px rgba(0,0,0,0.14),
     0 48px 100px rgba(0,0,0,0.10),
     0 16px 45px rgba(255, 160, 110, 0.25);
 
+  background: rgba(255,255,255,0.97);
   outline: 1px solid var(--warm-border);
 }
 
 /* =========================================================
-   6) IMAGEN DEL PRODUCTO (BASE)
-   - En escritorio mantiene cover (bonito)
+   6) IMAGEN DEL PRODUCTO (DESKTOP/TABLET)
+   - Aquí se mantiene cover (bonito)
 ========================================================= */
-.producto > img {
+.producto > img{
   width: 100%;
   height: 185px;
 
@@ -180,13 +172,13 @@ body::before {
 /* =========================================================
    7) TEXTOS
 ========================================================= */
-.producto p {
+.producto p{
   margin: 0;
   text-align: center;
   color: #2f2f2f;
 }
 
-.producto p:not(.precio) {
+.producto p:not(.precio){
   font-size: 15px;
   font-weight: 400;
   min-height: 38px;
@@ -198,7 +190,7 @@ body::before {
   padding: 0 8px;
 }
 
-.precio {
+.precio{
   font-weight: 600;
   font-size: 16px;
   color: var(--price);
@@ -206,14 +198,14 @@ body::before {
 }
 
 /* =========================================================
-   8) WHATSAPP (ICONO SOLO)
+   8) WHATSAPP (SOLO ICONO)
 ========================================================= */
-.wpp-btn {
+.wpp-btn{
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   margin-top: 8px;
+
   padding: 8px;
 
   background: transparent;
@@ -225,18 +217,18 @@ body::before {
   transition: transform .15s ease, filter .15s ease;
 }
 
-.wpp-btn:hover {
+.wpp-btn:hover{
   transform: translateY(-1px);
   filter: brightness(1.05);
 }
 
-.wpp-btn:active {
+.wpp-btn:active{
   transform: translateY(0);
 }
 
-.wpp-text { display: none; }
+.wpp-text{ display: none; }
 
-.wpp-icon {
+.wpp-icon{
   width: 52px;
   height: 52px;
   object-fit: contain;
@@ -246,7 +238,7 @@ body::before {
 /* =========================================================
    9) MODAL
 ========================================================= */
-.modal {
+.modal{
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.70);
@@ -259,8 +251,7 @@ body::before {
   z-index: 999;
 }
 
-/* Pines (una imagen) */
-.modal-contenido {
+.modal-contenido{
   max-width: min(92vw, 540px);
   max-height: 82vh;
   border-radius: 16px;
@@ -270,8 +261,7 @@ body::before {
   box-shadow: 0 20px 55px rgba(0,0,0,0.35);
 }
 
-/* PisaCorbatas (galería) */
-.modal-galeria {
+.modal-galeria{
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
@@ -283,7 +273,7 @@ body::before {
   padding: 8px;
 }
 
-.modal-galeria img {
+.modal-galeria img{
   max-width: 240px;
   max-height: 60vh;
   border-radius: 14px;
@@ -293,8 +283,7 @@ body::before {
   box-shadow: 0 18px 40px rgba(0,0,0,0.28);
 }
 
-/* Cerrar */
-.cerrar {
+.cerrar{
   position: fixed;
   top: 18px;
   right: 22px;
@@ -312,7 +301,7 @@ body::before {
 /* =========================================================
    10) DESCRIPCIÓN PRINCIPAL
 ========================================================= */
-.descripcion {
+.descripcion{
   max-width: 760px;
   margin: 8px auto 24px;
 
@@ -328,27 +317,25 @@ body::before {
 }
 
 /* =========================================================
-   11) RESPONSIVE GENERAL
+   11) RESPONSIVE (GENERAL)
 ========================================================= */
-@media (max-width: 768px) {
-  .producto > img { height: 175px; }
-  .wpp-icon { width: 48px; height: 48px; }
+@media (max-width: 768px){
+  .wpp-icon{ width: 48px; height: 48px; }
 
-  .descripcion {
+  .descripcion{
     max-width: 92%;
     font-size: 15px;
     margin-bottom: 22px;
   }
 }
 
-@media (max-width: 480px) {
-  .productos { padding: 20px; }
-  .grid-productos { gap: 20px; }
+@media (max-width: 480px){
+  .productos{ padding: 20px; }
+  .grid-productos{ gap: 20px; }
 
-  .producto > img { height: 160px; }
-  .wpp-icon { width: 46px; height: 46px; }
+  .wpp-icon{ width: 46px; height: 46px; }
 
-  .descripcion {
+  .descripcion{
     font-size: 14.5px;
     line-height: 1.6;
     margin-bottom: 20px;
@@ -356,16 +343,28 @@ body::before {
 }
 
 /* =========================================================
-   12) FIX IMPORTANTE (TU PROBLEMA EN 404px)
-   - En pantallas angostas la imagen NO se recorta:
-   - Se ve COMPLETA usando contain.
+   12) CELULAR: IMAGEN COMPLETA COMPLETA (SIN RECORTE)
+   ✅ ESTE ES EL CAMBIO CLAVE REAL
+   - FORZAMOS contain y QUITAMOS height fijo
 ========================================================= */
-@media (max-width: 420px) {
-  .producto > img {
-    object-fit: contain;
+@media (max-width: 600px){
+  .producto > img{
+    /* ✅ que ocupe el ancho del card */
+    width: 100%;
+    display: block;
+    align-self: stretch;
+
+    /* ✅ NO RECORTA: muestra completa */
+    object-fit: contain !important;
     object-position: center;
 
-    /* para que el espacio no se vea feo */
+    /* ✅ QUITAR height fijo que causa recorte */
+    height: auto !important;
+
+    /* ✅ evita que se vuelva gigantesca */
+    max-height: 230px;
+
+    /* ✅ opcional: un fondo suave para el "aire" */
     background: rgba(0,0,0,0.03);
   }
 }
