@@ -1,6 +1,7 @@
 /* =========================================================
-   RESET / BASE
+   1) TIPOGRAFÍA + RESET
 ========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
 *,
 *::before,
@@ -8,105 +9,220 @@
   box-sizing: border-box;
 }
 
-/* =========================================================
-   CONTENEDOR GENERAL
-========================================================= */
+:root{
+  /* Texto normal (negro) */
+  --text: #222;
+  --title: #2f2f3a;
 
-.productos{
-  padding: 20px;
+  /* Fondo azul cielo: "azulito oscurito suave" -> "azul claro" */
+  --sky-deep: #78b6ff;   /* un azul cielo más subido pero NO oscuro */
+  --sky-mid:  #b9ddff;   /* medio */
+  --sky-light:#eef8ff;   /* claro */
+
+  /* Calidez (para combinar con el azul) */
+  --warm-1: #fff3e6;      /* crema suave */
+  --warm-2: #ffe2cf;      /* duraznito suave */
+  --warm-border: rgba(255, 185, 140, 0.40);
+
+  /* Cards */
+  --card-bg: rgba(255,255,255,0.94);
+  --card-border: rgba(255,255,255,0.75);
+
+  /* Sombras (más pro) */
+  --shadow-dark-1: rgba(0, 0, 0, 0.12);
+  --shadow-dark-2: rgba(0, 0, 0, 0.10);
+  --shadow-warm: rgba(255, 170, 120, 0.20);
+
+  /* Precio */
+  --price: #0d7a41;
 }
 
+body{
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  color: var(--text);
+  overflow-x: hidden;
+
+  /* =======================================================
+     FONDO: Azul cielo que va desvaneciendo a claro
+     + toque cálido (sutil) para que se sienta "calientico"
+     ======================================================= */
+  background:
+    radial-gradient(1600px 900px at 15% 10%, rgba(255, 239, 220, 0.22), transparent 62%),
+    radial-gradient(1400px 800px at 85% 15%, rgba(255, 226, 242, 0.14), transparent 60%),
+    radial-gradient(1600px 900px at 50% 105%, rgba(255, 240, 210, 0.20), transparent 65%),
+    linear-gradient(180deg, var(--sky-deep) 0%, var(--sky-mid) 45%, var(--sky-light) 100%);
+
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Capa suave tipo "neblina" para que el fondo se vea grande y bonito */
+body::before{
+  content: "";
+  position: fixed;
+  inset: -40vmax;
+  pointer-events: none;
+  z-index: -1;
+
+  background:
+    radial-gradient(circle at 20% 25%, rgba(255,255,255,0.48), transparent 44%),
+    radial-gradient(circle at 80% 55%, rgba(255,255,255,0.34), transparent 46%),
+    radial-gradient(circle at 55% 40%, rgba(185,225,255,0.28), transparent 52%);
+
+  filter: blur(12px);
+  opacity: 0.85;
+}
+
+/* En algunos móviles, fixed puede dar tirones */
+@media (max-width: 768px){
+  body{ background-attachment: scroll; }
+}
+
+/* =========================================================
+   2) CONTENEDOR GENERAL
+========================================================= */
+.productos{
+  padding: 26px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.productos h2{
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--title);
+  text-align: center;
+  margin: 0 0 20px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+/* =========================================================
+   3) GRID
+========================================================= */
 .grid-productos{
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 24px;
+  gap: 28px;
 }
 
 /* =========================================================
-   TARJETA DE PRODUCTO
+   4) TARJETA DE PRODUCTO (TOQUE CÁLIDO + MÁS SOMBRA)
 ========================================================= */
-
 .producto{
+  position: relative;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  padding: 18px;
+
+  /* ✅ sombras más fuertes + un glow cálido suave */
+  box-shadow:
+    0 14px 28px var(--shadow-dark-1),
+    0 34px 78px var(--shadow-dark-2),
+    0 12px 32px var(--shadow-warm);
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  gap: 8px;
+  gap: 10px;
 
-  padding: 16px;
-  border-radius: 16px;
-  background: #fff;
-
-  box-shadow: 0 8px 18px rgba(0,0,0,.08);
   cursor: pointer;
-  transition: transform .15s ease, box-shadow .15s ease;
+  transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
+}
+
+/* ✅ “toque cálido” sin meter cosas extras:
+   una luz cálida arriba, casi invisible, que combina con el azul */
+.producto::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  pointer-events: none;
+
+  /* brillo cálido arriba + leve transición */
+  background:
+    linear-gradient(180deg, rgba(255, 226, 205, 0.42) 0%, rgba(255, 226, 205, 0.12) 22%, transparent 55%);
+  opacity: 0.55;
 }
 
 .producto:hover{
-  transform: translateY(-2px);
-  box-shadow: 0 12px 24px rgba(0,0,0,.12);
+  transform: translateY(-6px);
+
+  box-shadow:
+    0 20px 44px rgba(0,0,0,0.14),
+    0 48px 100px rgba(0,0,0,0.10),
+    0 16px 45px rgba(255, 160, 110, 0.25);
+
+  background: rgba(255,255,255,0.97);
+}
+
+/* Borde cálido súper suave para que “combine” con el azul */
+.producto{
+  outline: 1px solid transparent;
+}
+.producto:hover{
+  outline: 1px solid var(--warm-border);
 }
 
 /* =========================================================
-   IMAGEN DEL PRODUCTO
+   5) IMAGEN DEL PRODUCTO
 ========================================================= */
-
 .producto > img{
   width: 100%;
-  max-width: 240px;
-  height: 180px;
+  height: 185px;
+  border-radius: 16px;
   object-fit: cover;
-  border-radius: 12px;
   display: block;
+
+  box-shadow: 0 12px 22px rgba(0,0,0,0.10);
 }
 
 /* =========================================================
-   TEXTO
+   6) TEXTOS (negros normales)
 ========================================================= */
-
 .producto p{
   margin: 0;
+  text-align: center;
+  color: #2f2f2f;
 }
 
 .producto p:not(.precio){
-  font-size: 14px;
-  line-height: 1.25;
-  min-height: 36px;
+  font-size: 15px;
+  font-weight: 400;
+  min-height: 38px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  padding: 0 10px;
+  padding: 0 8px;
 }
 
 .precio{
-  font-weight: 700;
-  font-size: 15px;
-  margin-top: 2px;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--price);
+  text-shadow: 0 2px 8px rgba(13, 122, 65, 0.12);
 }
 
 /* =========================================================
-   BOTÓN WHATSAPP (SOLO ÍCONO - SIN FONDO)
+   7) WHATSAPP (✅ ICONO COMPLETO - SIN RECORTE - SIN FONDO)
+   OJO: como me dijiste: no lo vuelvo botón verde, solo ícono.
 ========================================================= */
-
 .wpp-btn{
-  width: 52px;
-  height: 52px;
-
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   margin-top: 8px;
 
-  /* ✅ SIN fondo, SIN sombra, SIN borde */
+  /* ✅ evita recorte del SVG */
+  padding: 8px;
+
   background: transparent;
   border: none;
-  border-radius: 0;
   box-shadow: none;
-  padding: 0;
-
+  border-radius: 0;
   text-decoration: none;
 
   transition: transform .15s ease, filter .15s ease;
@@ -121,109 +237,94 @@
   transform: translateY(0);
 }
 
-/* Oculta texto extra */
 .wpp-text{
   display: none;
 }
 
-/* Ícono de WhatsApp */
 .wpp-icon{
-  width: 42px;        /* ✅ tamaño fijo para consistencia */
-  height: 42px;
+  width: 52px;
+  height: 52px;
   object-fit: contain;
   display: block;
 }
 
 /* =========================================================
-   MODAL (CENTRADO + SIMÉTRICO)
+   8) MODAL
 ========================================================= */
-
 .modal{
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.75);
+  background: rgba(0,0,0,0.70);
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  padding: 18px;          /* ✅ respiro en móvil */
+  padding: 20px;
   z-index: 999;
 }
 
+/* Pines (una imagen) */
 .modal-contenido{
-  max-width: min(92vw, 520px);  /* ✅ centrado y controlado */
-  max-height: 80vh;
-
-  width: auto;
-  height: auto;
-
+  max-width: min(92vw, 540px);
+  max-height: 82vh;
   border-radius: 16px;
-  display: block;
-  margin: 0 auto;         /* ✅ simetría */
   object-fit: contain;
+  display: block;
+
+  box-shadow: 0 20px 55px rgba(0,0,0,0.35);
 }
 
-/* En el caso de galería (PisaCorbatas) */
+/* PisaCorbatas (galería) */
 .modal-galeria{
   display: flex;
-  gap: 12px;
   flex-wrap: wrap;
+  gap: 12px;
   justify-content: center;
-  align-items: center;
 
   max-width: 92vw;
-  max-height: 80vh;
-  overflow: auto;         /* ✅ si son muchas imágenes */
+  max-height: 82vh;
+  overflow-y: auto;
   padding: 8px;
 }
 
 .modal-galeria img{
-  max-width: min(92vw, 260px);
+  max-width: 240px;
   max-height: 60vh;
-  border-radius: 16px;
+  border-radius: 14px;
   object-fit: contain;
   display: block;
+
+  box-shadow: 0 18px 40px rgba(0,0,0,0.28);
 }
 
-/* Botón cerrar (NO mueve el contenido) */
+/* Cerrar */
 .cerrar{
-  position: fixed;        /* ✅ para que no afecte centrado */
-  top: 16px;
-  right: 18px;
+  position: fixed;
+  top: 18px;
+  right: 22px;
+
   font-size: 36px;
+  font-weight: 300;
   color: #fff;
   cursor: pointer;
   line-height: 1;
   z-index: 1000;
+
+  text-shadow: 0 12px 28px rgba(0,0,0,0.35);
 }
 
 /* =========================================================
-   RESPONSIVE
+   9) RESPONSIVE
 ========================================================= */
-
 @media (max-width: 768px){
-  .producto > img{
-    height: 170px;
-  }
-
-  .wpp-btn{
-    width: 48px;
-    height: 48px;
-  }
-
-  .wpp-icon{
-    width: 38px;
-    height: 38px;
-  }
+  .producto > img{ height: 175px; }
+  .wpp-icon{ width: 48px; height: 48px; }
 }
 
 @media (max-width: 480px){
-  .producto > img{
-    height: 160px;
-  }
-
-  .grid-productos{
-    gap: 18px;
-  }
+  .productos{ padding: 20px; }
+  .grid-productos{ gap: 20px; }
+  .producto > img{ height: 160px; }
+  .wpp-icon{ width: 46px; height: 46px; }
 }

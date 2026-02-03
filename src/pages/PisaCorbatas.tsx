@@ -72,7 +72,7 @@ export default function PisaCorbatas() {
 
   return (
     <div className="productos">
-      <h2>Pisa Corbatas Disponibles</h2>
+      <h2>Pisa Corbatas Disponibles 📌</h2>
 
       <div className="grid-productos">
         {productos.map((prod) => (
