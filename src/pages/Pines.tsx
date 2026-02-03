@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import wppIcon from '../imagenes/whppp.svg';
 
 import pinBateria from '../imagenes/pin_alas.webp';
@@ -21,155 +22,73 @@ interface Producto {
   nombre: string;
   precio: string;
   imagen: string;
-  mensajeWpp: string; // ✅ guardamos SOLO el mensaje, no el link completo
+  wpp: string;
 }
 
-const WPP_PHONE = '573218275703';
-
-const buildWppLink = (mensaje: string) => {
-  return `https://wa.me/${WPP_PHONE}?text=${encodeURIComponent(mensaje)}`;
-};
-
 const productos: Producto[] = [
-  {
-    id: 1,
-    nombre: 'Pin de batería metálico',
-    precio: '15.000',
-    imagen: pinBateria,
-    mensajeWpp: 'Hola, estoy interesado en el pin de batería',
-  },
-  {
-    id: 2,
-    nombre: 'Pin reloj metálico',
-    precio: '15.000',
-    imagen: relojPin,
-    mensajeWpp: 'Hola, estoy interesado en el pin reloj',
-  },
-  {
-    id: 3,
-    nombre: 'Pin de platillos metálico',
-    precio: '15.000',
-    imagen: pinPlatillo,
-    mensajeWpp: 'Hola, estoy interesado en el pin de platillos',
-  },
-  {
-    id: 4,
-    nombre: 'Pin avión metálico',
-    precio: '15.000',
-    imagen: pinAvion,
-    mensajeWpp: 'Hola, estoy interesado en el pin avión',
-  },
-  {
-    id: 5,
-    nombre: 'Pin platillo Zildjian metálico',
-    precio: '15.000',
-    imagen: platilloZil,
-    mensajeWpp: 'Hola, estoy interesado en el pin platillo Zildjian',
-  },
-  {
-    id: 6,
-    nombre: 'Pin gafas negras metálico',
-    precio: '15.000',
-    imagen: gafasNegrasPin,
-    mensajeWpp: 'Hola, estoy interesado en el pin de gafas negras',
-  },
-  {
-    id: 7,
-    nombre: 'Pin clave de sol metálico',
-    precio: '15.000',
-    imagen: claveDeSol,
-    mensajeWpp: 'Hola, estoy interesado en el pin clave de sol',
-  },
-  {
-    id: 8,
-    nombre: 'Pin piano metálico',
-    precio: '15.000',
-    imagen: pianoPin,
-    mensajeWpp: 'Hola, estoy interesado en el pin de piano',
-  },
-  {
-    id: 9,
-    nombre: 'Pin piano clásico metálico',
-    precio: '15.000',
-    imagen: otroPiano,
-    mensajeWpp: 'Hola, estoy interesado en el pin de piano clásico',
-  },
-  {
-    id: 10,
-    nombre: 'Pin guitarra metálico',
-    precio: '15.000',
-    imagen: guitarraPin,
-    mensajeWpp: 'Hola, estoy interesado en el pin de guitarra',
-  },
-  {
-    id: 11,
-    nombre: 'Pin micrófono metálico',
-    precio: '15.000',
-    imagen: microfono,
-    mensajeWpp: 'Hola, estoy interesado en el pin de micrófono',
-  },
-  {
-    id: 12,
-    nombre: 'Pin gafas negras clásicas',
-    precio: '15.000',
-    imagen: gafasNegras,
-    mensajeWpp: 'Hola, estoy interesado en el pin de gafas negras clásicas',
-  },
+  { id: 1, nombre: 'Pin de Alas ', precio: '15.000', imagen: pinBateria, wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20de%20Alas' },
+  { id: 2, nombre: 'Pin reloj ', precio: '15.000', imagen: relojPin, wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20reloj' },
+  { id: 3, nombre: 'Pin de platillos ', precio: '15.000', imagen: pinPlatillo, wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20de%20platillos' },
+  { id: 4, nombre: 'Pin avión ', precio: '15.000', imagen: pinAvion, wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20avión' },
+  { id: 5, nombre: 'Pin platillo Zildjian ', precio: '15.000', imagen: platilloZil, wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20platillo%20Zildjian' },
+  { id: 6, nombre: 'Pin gafas negras ', precio: '15.000', imagen: gafasNegrasPin, wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20de%20gafas%20negras' },
+  { id: 7, nombre: 'Pin clave de sol ', precio: '15.000', imagen: claveDeSol, wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20clave%20de%20sol' },
+  { id: 8, nombre: 'Pin piano ', precio: '15.000', imagen: pianoPin, wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20de%20piano' },
+  { id: 9, nombre: 'Pin piano clásico ', precio: '15.000', imagen: otroPiano, wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20de%20piano%20clásico' },
+  { id: 10, nombre: 'Pin guitarra ', precio: '15.000', imagen: guitarraPin, wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20de%20guitarra' },
+  { id: 11, nombre: 'Pin micrófono ', precio: '15.000', imagen: microfono, wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20de%20micrófono' },
+  { id: 12, nombre: 'Pin gafas negras clásicas', precio: '15.000', imagen: gafasNegras, wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20de%20gafas%20negras%20clásicas' },
 ];
 
 export default function Pines() {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [imagenSeleccionada, setImagenSeleccionada] = useState('');
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [imagenSeleccionada, setImagenSeleccionada] = useState<string>('');
 
-  const abrirModal = (imagen: string) => {
+  const abrirModal = (imagen: string): void => {
     setImagenSeleccionada(imagen);
     setModalOpen(true);
   };
 
-  const cerrarModal = () => {
+  const cerrarModal = (): void => {
     setModalOpen(false);
     setImagenSeleccionada('');
   };
 
   return (
     <div className="productos">
-      <h2>Pines Disponibles 📌</h2>
+      <h2>Pines Disponible 📌</h2>
 
       <div className="grid-productos">
-        {productos.map((prod) => {
-          const wppLink = buildWppLink(prod.mensajeWpp);
+        {productos.map((prod) => (
+          <div
+            key={prod.id}
+            className="producto"
+            onClick={() => abrirModal(prod.imagen)}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') abrirModal(prod.imagen);
+            }}
+          >
+            <img src={prod.imagen} alt={prod.nombre} />
 
-          return (
-            <div
-              key={prod.id}
-              className="producto"
-              onClick={() => abrirModal(prod.imagen)}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') abrirModal(prod.imagen);
-              }}
+            <p>{prod.nombre}</p>
+            <p className="precio">${prod.precio}</p>
+
+            <a
+              href={prod.wpp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="wpp-btn"
+              onClick={(e) => e.stopPropagation()}
+              aria-label={`Pedir por WhatsApp: ${prod.nombre}`}
+              title="Pedir por WhatsApp"
             >
-              <img src={prod.imagen} alt={prod.nombre} />
-
-              <p>{prod.nombre}</p>
-              <p className="precio">${prod.precio}</p>
-
-              <a
-                href={wppLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="wpp-btn"
-                onClick={(e) => e.stopPropagation()}
-                aria-label={`Pedir por WhatsApp: ${prod.nombre}`}
-                title="Pedir por WhatsApp"
-              >
-                <img src={wppIcon} alt="WhatsApp" className="wpp-icon" />
-                <span className="wpp-text">Pedir por WhatsApp</span>
-              </a>
-            </div>
-          );
-        })}
+              <img src={wppIcon} alt="WhatsApp" className="wpp-icon" />
+              <span className="wpp-text">Pedir por WhatsApp</span>
+            </a>
+          </div>
+        ))}
       </div>
 
       {modalOpen && (

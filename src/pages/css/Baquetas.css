@@ -5,30 +5,30 @@
 
 *,
 *::before,
-*::after{
+*::after {
   box-sizing: border-box;
 }
 
-:root{
-  /* Texto normal (negro) */
+:root {
+  /* Texto normal */
   --text: #222;
   --title: #2f2f3a;
 
-  /* Fondo azul cielo: "azulito oscurito suave" -> "azul claro" */
-  --sky-deep: #78b6ff;   /* un azul cielo más subido pero NO oscuro */
-  --sky-mid:  #b9ddff;   /* medio */
-  --sky-light:#eef8ff;   /* claro */
+  /* Fondo azul cielo */
+  --sky-deep: #78b6ff;
+  --sky-mid:  #b9ddff;
+  --sky-light:#eef8ff;
 
-  /* Calidez (para combinar con el azul) */
-  --warm-1: #fff3e6;      /* crema suave */
-  --warm-2: #ffe2cf;      /* duraznito suave */
+  /* Calidez */
+  --warm-1: #fff3e6;
+  --warm-2: #ffe2cf;
   --warm-border: rgba(255, 185, 140, 0.40);
 
   /* Cards */
   --card-bg: rgba(255,255,255,0.94);
   --card-border: rgba(255,255,255,0.75);
 
-  /* Sombras (más pro) */
+  /* Sombras */
   --shadow-dark-1: rgba(0, 0, 0, 0.12);
   --shadow-dark-2: rgba(0, 0, 0, 0.10);
   --shadow-warm: rgba(255, 170, 120, 0.20);
@@ -37,16 +37,15 @@
   --price: #0d7a41;
 }
 
-body{
+/* =========================================================
+   2) BODY + FONDO
+========================================================= */
+body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   color: var(--text);
   overflow-x: hidden;
 
-  /* =======================================================
-     FONDO: Azul cielo que va desvaneciendo a claro
-     + toque cálido (sutil) para que se sienta "calientico"
-     ======================================================= */
   background:
     radial-gradient(1600px 900px at 15% 10%, rgba(255, 239, 220, 0.22), transparent 62%),
     radial-gradient(1400px 800px at 85% 15%, rgba(255, 226, 242, 0.14), transparent 60%),
@@ -57,8 +56,8 @@ body{
   background-attachment: fixed;
 }
 
-/* Capa suave tipo "neblina" para que el fondo se vea grande y bonito */
-body::before{
+/* Capa suave tipo "neblina" */
+body::before {
   content: "";
   position: fixed;
   inset: -40vmax;
@@ -75,20 +74,20 @@ body::before{
 }
 
 /* En algunos móviles, fixed puede dar tirones */
-@media (max-width: 768px){
-  body{ background-attachment: scroll; }
+@media (max-width: 768px) {
+  body { background-attachment: scroll; }
 }
 
 /* =========================================================
-   2) CONTENEDOR GENERAL
+   3) CONTENEDOR GENERAL
 ========================================================= */
-.productos{
+.productos {
   padding: 26px;
   max-width: 1400px;
   margin: 0 auto;
 }
 
-.productos h2{
+.productos h2 {
   font-size: 26px;
   font-weight: 600;
   color: var(--title);
@@ -98,25 +97,24 @@ body::before{
 }
 
 /* =========================================================
-   3) GRID
+   4) GRID
 ========================================================= */
-.grid-productos{
+.grid-productos {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 28px;
 }
 
 /* =========================================================
-   4) TARJETA DE PRODUCTO (TOQUE CÁLIDO + MÁS SOMBRA)
+   5) TARJETA DE PRODUCTO
 ========================================================= */
-.producto{
+.producto {
   position: relative;
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 20px;
   padding: 18px;
 
-  /* ✅ sombras más fuertes + un glow cálido suave */
   box-shadow:
     0 14px 28px var(--shadow-dark-1),
     0 34px 78px var(--shadow-dark-2),
@@ -129,65 +127,66 @@ body::before{
 
   cursor: pointer;
   transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
+
+  outline: 1px solid transparent;
 }
 
-/* ✅ “toque cálido” sin meter cosas extras:
-   una luz cálida arriba, casi invisible, que combina con el azul */
-.producto::before{
+/* Luz cálida dentro de la tarjeta */
+.producto::before {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: 20px;
   pointer-events: none;
 
-  /* brillo cálido arriba + leve transición */
   background:
-    linear-gradient(180deg, rgba(255, 226, 205, 0.42) 0%, rgba(255, 226, 205, 0.12) 22%, transparent 55%);
+    linear-gradient(
+      180deg,
+      rgba(255, 226, 205, 0.42) 0%,
+      rgba(255, 226, 205, 0.12) 22%,
+      transparent 55%
+    );
   opacity: 0.55;
 }
 
-.producto:hover{
+.producto:hover {
   transform: translateY(-6px);
+  background: rgba(255,255,255,0.97);
 
   box-shadow:
     0 20px 44px rgba(0,0,0,0.14),
     0 48px 100px rgba(0,0,0,0.10),
     0 16px 45px rgba(255, 160, 110, 0.25);
 
-  background: rgba(255,255,255,0.97);
-}
-
-/* Borde cálido súper suave para que “combine” con el azul */
-.producto{
-  outline: 1px solid transparent;
-}
-.producto:hover{
   outline: 1px solid var(--warm-border);
 }
 
 /* =========================================================
-   5) IMAGEN DEL PRODUCTO
+   6) IMAGEN DEL PRODUCTO (BASE)
+   - En escritorio mantiene cover (bonito)
 ========================================================= */
-.producto > img{
+.producto > img {
   width: 100%;
   height: 185px;
+
   border-radius: 16px;
   object-fit: cover;
+  object-position: center;
   display: block;
 
   box-shadow: 0 12px 22px rgba(0,0,0,0.10);
 }
 
 /* =========================================================
-   6) TEXTOS (negros normales)
+   7) TEXTOS
 ========================================================= */
-.producto p{
+.producto p {
   margin: 0;
   text-align: center;
   color: #2f2f2f;
 }
 
-.producto p:not(.precio){
+.producto p:not(.precio) {
   font-size: 15px;
   font-weight: 400;
   min-height: 38px;
@@ -199,7 +198,7 @@ body::before{
   padding: 0 8px;
 }
 
-.precio{
+.precio {
   font-weight: 600;
   font-size: 16px;
   color: var(--price);
@@ -207,16 +206,14 @@ body::before{
 }
 
 /* =========================================================
-   7) WHATSAPP (✅ ICONO COMPLETO - SIN RECORTE - SIN FONDO)
-   OJO: como me dijiste: no lo vuelvo botón verde, solo ícono.
+   8) WHATSAPP (ICONO SOLO)
 ========================================================= */
-.wpp-btn{
+.wpp-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-top: 8px;
 
-  /* ✅ evita recorte del SVG */
+  margin-top: 8px;
   padding: 8px;
 
   background: transparent;
@@ -228,20 +225,18 @@ body::before{
   transition: transform .15s ease, filter .15s ease;
 }
 
-.wpp-btn:hover{
+.wpp-btn:hover {
   transform: translateY(-1px);
   filter: brightness(1.05);
 }
 
-.wpp-btn:active{
+.wpp-btn:active {
   transform: translateY(0);
 }
 
-.wpp-text{
-  display: none;
-}
+.wpp-text { display: none; }
 
-.wpp-icon{
+.wpp-icon {
   width: 52px;
   height: 52px;
   object-fit: contain;
@@ -249,9 +244,9 @@ body::before{
 }
 
 /* =========================================================
-   8) MODAL
+   9) MODAL
 ========================================================= */
-.modal{
+.modal {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.70);
@@ -265,7 +260,7 @@ body::before{
 }
 
 /* Pines (una imagen) */
-.modal-contenido{
+.modal-contenido {
   max-width: min(92vw, 540px);
   max-height: 82vh;
   border-radius: 16px;
@@ -276,7 +271,7 @@ body::before{
 }
 
 /* PisaCorbatas (galería) */
-.modal-galeria{
+.modal-galeria {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
@@ -288,7 +283,7 @@ body::before{
   padding: 8px;
 }
 
-.modal-galeria img{
+.modal-galeria img {
   max-width: 240px;
   max-height: 60vh;
   border-radius: 14px;
@@ -299,7 +294,7 @@ body::before{
 }
 
 /* Cerrar */
-.cerrar{
+.cerrar {
   position: fixed;
   top: 18px;
   right: 22px;
@@ -315,23 +310,9 @@ body::before{
 }
 
 /* =========================================================
-   9) RESPONSIVE
+   10) DESCRIPCIÓN PRINCIPAL
 ========================================================= */
-@media (max-width: 768px){
-  .producto > img{ height: 175px; }
-  .wpp-icon{ width: 48px; height: 48px; }
-}
-
-@media (max-width: 480px){
-  .productos{ padding: 20px; }
-  .grid-productos{ gap: 20px; }
-  .producto > img{ height: 160px; }
-  .wpp-icon{ width: 46px; height: 46px; }
-}
-/* =========================================================
-   DESCRIPCIÓN PRINCIPAL
-========================================================= */
-.descripcion{
+.descripcion {
   max-width: 760px;
   margin: 8px auto 24px;
 
@@ -346,20 +327,45 @@ body::before{
   text-shadow: 0 2px 10px rgba(0,0,0,0.06);
 }
 
-/* Tablets */
-@media (max-width: 768px){
-  .descripcion{
+/* =========================================================
+   11) RESPONSIVE GENERAL
+========================================================= */
+@media (max-width: 768px) {
+  .producto > img { height: 175px; }
+  .wpp-icon { width: 48px; height: 48px; }
+
+  .descripcion {
     max-width: 92%;
     font-size: 15px;
     margin-bottom: 22px;
   }
 }
 
-/* Celulares */
-@media (max-width: 480px){
-  .descripcion{
+@media (max-width: 480px) {
+  .productos { padding: 20px; }
+  .grid-productos { gap: 20px; }
+
+  .producto > img { height: 160px; }
+  .wpp-icon { width: 46px; height: 46px; }
+
+  .descripcion {
     font-size: 14.5px;
     line-height: 1.6;
     margin-bottom: 20px;
+  }
+}
+
+/* =========================================================
+   12) FIX IMPORTANTE (TU PROBLEMA EN 404px)
+   - En pantallas angostas la imagen NO se recorta:
+   - Se ve COMPLETA usando contain.
+========================================================= */
+@media (max-width: 420px) {
+  .producto > img {
+    object-fit: contain;
+    object-position: center;
+
+    /* para que el espacio no se vea feo */
+    background: rgba(0,0,0,0.03);
   }
 }
