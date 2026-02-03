@@ -6,8 +6,16 @@ import './App.css';
 function App() {
   return (
     <div className="container">
-      <h1 className="titulo">🎵 Mi Tienda Online Musical</h1>
+      {/* Título */}
+      <h1 className="titulo">Mi Tienda Online Musical</h1>
 
+      {/* Descripción */}
+      <p className="descripcion">
+        Detalles musicales para regalar o usar todos los días<br />
+        Pide tus pines y pisa corbatas fácilmente por WhatsApp.
+      </p>
+
+      {/* Navegación */}
       <nav className="nav">
         <NavLink to="/pines" className="nav-btn">
           Pines
@@ -18,11 +26,9 @@ function App() {
         </NavLink>
       </nav>
 
+      {/* Rutas */}
       <Routes>
-        {/* Redirección automática */}
         <Route path="/" element={<Navigate to="/pines" replace />} />
-
-        {/* Páginas */}
         <Route path="/pines" element={<Pines />} />
         <Route path="/pisacorbat" element={<PisaCorbatas />} />
       </Routes>
