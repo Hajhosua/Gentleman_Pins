@@ -183,3 +183,50 @@
     height: 24px;
   }
 }
+
+
+/* ============================
+   HEADER + LOGO (SOLO LOGO)
+============================ */
+
+.header {
+  position: relative; /* clave */
+  display: flex;
+  justify-content: center; /* mantiene texto centrado */
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Logo a la izquierda SOLO en PC */
+.logo {
+  position: absolute;
+  left: 0;               /* 👈 se va a la izquierda */
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #fff;
+  padding: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Texto queda EXACTAMENTE como antes */
+.header-texto {
+  text-align: center;
+}
+
+/* ============================
+   📱 RESPONSIVE (CELULAR)
+============================ */
+@media (max-width: 550px) {
+  .header {
+    flex-direction: column;
+  }
+
+  .logo {
+    position: static; /* vuelve al flujo normal */
+    width: 90px;
+    height: 90px;
+    margin-bottom: 8px;
+  }
+}
