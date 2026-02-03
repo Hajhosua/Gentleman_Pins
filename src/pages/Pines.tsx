@@ -56,7 +56,7 @@ export default function Pines() {
 
   return (
     <div className="productos">
-      <h2>Pines Disponibles</h2>
+      <h2>Pines Disponible 😁</h2>
 
       <div className="grid-productos">
         {productos.map((prod) => (
