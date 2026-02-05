@@ -18,6 +18,63 @@
 }
 
 /* ============================
+   TABLA DE PRECIOS (PROMO COMBOS)
+============================ */
+.promo-table {
+  max-width: 380px;
+  margin: 0 auto 25px;
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 14px 18px;
+  border-radius: 14px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.10);
+  border: 1px solid rgba(255,255,255,0.5);
+}
+
+/* FILA */
+.promo-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* 3 columnas alineadas */
+  font-size: 14px;
+  color: #1b1b1b;
+  padding: 6px 0;
+}
+
+/* ENCABEZADO */
+.promo-row.header {
+  font-weight: 700;
+  color: #004aad;
+  border-bottom: 1px solid rgba(0,0,0,0.25);
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+}
+
+/* ALINEACIONES */
+.promo-row span:nth-child(1) {
+  text-align: left;
+}
+
+.promo-row span:nth-child(2) {
+  text-align: center;
+}
+
+.promo-row span:nth-child(3) {
+  text-align: right;
+}
+
+/* MÓVIL */
+@media (max-width: 600px) {
+  .promo-table {
+    max-width: 95%;
+    padding: 12px 14px;
+  }
+  .promo-row {
+    font-size: 12.5px;
+  }
+}
+
+/* ============================
    NAVEGACIÓN
 ============================ */
 .nav {
@@ -46,7 +103,7 @@
 }
 
 /* ============================
-   PRODUCTOS (GRID)
+   GRID PRODUCTOS
 ============================ */
 .grid-productos {
   display: grid;
@@ -68,7 +125,6 @@
   transform: translateY(-3px);
 }
 
-/* Imagen del producto */
 .producto img {
   width: 100%;
   max-height: 320px;
@@ -76,7 +132,7 @@
   border-radius: 12px;
 }
 
-/* Precio */
+/* PRECIO */
 .precio {
   font-weight: bold;
   font-size: 18px;
@@ -85,17 +141,16 @@
 }
 
 /* ============================
-   BOTÓN WHATSAPP (solo ícono)
+   WHATSAPP
 ============================ */
 .wpp-btn {
   display: inline-flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   background: #25D366;
   padding: 12px;
   border-radius: 14px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.12);
-  transition: .2s ease;
   width: 55px;
   height: 55px;
   margin-top: 12px;
@@ -148,7 +203,7 @@
 }
 
 /* ============================
-   📱 RESPONSIVE — CELULAR
+   RESPONSIVE CELULAR
 ============================ */
 @media (max-width: 550px) {
 
@@ -160,12 +215,8 @@
     grid-template-columns: 1fr;
   }
 
-  .producto {
-    padding: 12px;
-  }
-
   .producto img {
-    max-height: 240px; /* 🔥 evita que se vea enorme */
+    max-height: 240px;
   }
 
   .precio {
@@ -184,39 +235,35 @@
   }
 }
 
-
 /* ============================
-   HEADER + LOGO (SOLO LOGO)
+   HEADER + LOGO
 ============================ */
-
 .header {
-  position: relative; /* clave */
+  position: relative;
   display: flex;
-  justify-content: center; /* mantiene texto centrado */
+  justify-content: center;
   align-items: center;
   margin-bottom: 20px;
 }
 
-/* Logo a la izquierda SOLO en PC */
 .logo {
   position: absolute;
-  left: 0;               /* 👈 se va a la izquierda */
+  left: 0;
   width: 70px;
   height: 70px;
   border-radius: 50%;
   object-fit: cover;
   background: #fff;
   padding: 4px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-/* Texto queda EXACTAMENTE como antes */
 .header-texto {
   text-align: center;
 }
 
 /* ============================
-   📱 RESPONSIVE (CELULAR)
+   HEADER EN CELULAR
 ============================ */
 @media (max-width: 550px) {
   .header {
@@ -224,9 +271,68 @@
   }
 
   .logo {
-    position: static; /* vuelve al flujo normal */
+    position: static;
     width: 90px;
     height: 90px;
     margin-bottom: 8px;
   }
+
+  /* ============================
+   TABLA DE PRECIOS (PROMO COMBOS)
+============================ */
+.promo-table {
+  max-width: 380px;
+  margin: 0 auto 25px;
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 14px 18px;
+  border-radius: 14px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.10);
+  border: 1px solid rgba(255,255,255,0.5);
+}
+
+/* FILAS — 3 COLUMNAS PERFECTAS */
+.promo-row {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 1fr; /* ← AJUSTADO PARA ALINEAR PERFECTO */
+  font-size: 14px;
+  padding: 6px 0;
+  color: #1b1b1b;
+}
+
+/* ENCABEZADO */
+.promo-row.header {
+  font-weight: 700;
+  color: #004aad;
+  border-bottom: 1px solid rgba(0,0,0,0.25);
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+}
+
+/* ALINEACIÓN POR COLUMNA */
+.promo-row span:nth-child(1) {
+  text-align: left;     /* Cantidad */
+}
+
+.promo-row span:nth-child(2) {
+  text-align: center;   /* Precio */
+}
+
+.promo-row span:nth-child(3) {
+  text-align: right;    /* Total */
+}
+
+/* MÓVIL RESPONSIVO */
+@media (max-width: 600px) {
+  .promo-table {
+    max-width: 95%;
+    padding: 12px 14px;
+  }
+
+  .promo-row {
+    font-size: 12.5px;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
 }

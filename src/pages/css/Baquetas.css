@@ -367,4 +367,37 @@ body::before{
     /* ✅ opcional: un fondo suave para el "aire" */
     background: rgba(0,0,0,0.03);
   }
+
+
+  /* ===========================
+   BOTÓN AGREGAR AL COMBO
+=========================== */
+.btn-combo{
+  width: 100%;
+  border: none;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  background: #0b57d0;
+  color: #fff;
+  box-shadow: 0 10px 22px rgba(0,0,0,0.10);
+  transition: .15s ease;
+  margin-top: 6px;
+}
+
+.btn-combo:hover{
+  filter: brightness(0.96);
+  transform: translateY(-1px);
+}
+
+.btn-combo:active{
+  transform: translateY(0);
+}
+
+.btn-combo:disabled{
+  opacity: .55;
+  cursor: not-allowed;
+}
+
 }

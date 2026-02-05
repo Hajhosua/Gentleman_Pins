@@ -5,51 +5,93 @@ import Pines from './pages/Pines';
 import PisaCorbatas from './pages/PisaCorbatas';
 
 import logo from './imagenes/logo/pi.png';
-
 import './App.css';
+
+/* ✅ Context (Combo/Carrito) */
+import { CartProvider } from './pages/context/CartContext';
+
+/* ✅ Barra del combo (PASO 3B) */
+import ComboBar from './pages/components/ComboBar';
 
 /* ================= COMPONENT ================= */
 function App() {
   return (
-    <div className="container">
+    <CartProvider>
+      <div className="container">
 
-      {/* ================= HEADER ================= */}
-      <header className="header">
-        <img
-          src={logo}
-          alt="Gentleman Pins Logo"
-          className="logo"
-        />
+        {/* ================= HEADER ================= */}
+        <header className="header">
+          <img
+            src={logo}
+            alt="Gentleman Pins Logo"
+            className="logo"
+          />
 
-        <div className="header-texto">
-          <h1 className="titulo">Mi Tienda Online Musical</h1>
+          <div className="header-texto">
+            <h1 className="titulo">Mi Tienda Online Musical</h1>
 
-          <p className="descripcion">
-            Detalles musicales para regalar o usar todos los días<br />
-            Pide tus pines y pisa corbatas fácilmente por WhatsApp.
-          </p>
-        </div>
-      </header>
+            <p className="descripcion">
+              Detalles musicales para regalar o usar todos los días<br />
+              Pide tus pines y pisa corbatas fácilmente por WhatsApp.
+            </p>
+<div className="promo-table">
+  <div className="promo-row header">
+    <span>Cantidad</span>
+    <span>Precio c/u</span>
+    <span>Total</span>
+  </div>
 
-      {/* ================= NAVEGACIÓN ================= */}
-      <nav className="nav">
-        <NavLink to="/pines" className="nav-btn">
-          Pines
-        </NavLink>
+  <div className="promo-row">
+    <span>1 unidad</span>
+    <span>$18.000</span>
+    <span>$18.000</span>
+  </div>
 
-        <NavLink to="/pisacorbat" className="nav-btn">
-          Pisa Corbatas
-        </NavLink>
-      </nav>
+  <div className="promo-row">
+    <span>2 unidades</span>
+    <span>$16.000</span>
+    <span>$32.000</span>
+  </div>
 
-      {/* ================= RUTAS ================= */}
-      <Routes>
-        <Route path="/" element={<Navigate to="/pines" replace />} />
-        <Route path="/pines" element={<Pines />} />
-        <Route path="/pisacorbat" element={<PisaCorbatas />} />
-      </Routes>
+  <div className="promo-row">
+    <span>3 unidades</span>
+    <span>$13.000</span>
+    <span>$39.000</span>
+  </div>
 
-    </div>
+  <div className="promo-row">
+    <span>4 unidades</span>
+    <span>$10.000</span>
+    <span>$40.000</span>
+  </div>
+</div>
+           
+          </div>
+        </header>
+
+        {/* ================= NAVEGACIÓN ================= */}
+        <nav className="nav">
+          <NavLink to="/pines" className="nav-btn">
+            Pines
+          </NavLink>
+
+          <NavLink to="/pisacorbat" className="nav-btn">
+            Pisa Corbatas
+          </NavLink>
+        </nav>
+
+        {/* ================= RUTAS ================= */}
+        <Routes>
+          <Route path="/" element={<Navigate to="/pines" replace />} />
+          <Route path="/pines" element={<Pines />} />
+          <Route path="/pisacorbat" element={<PisaCorbatas />} />
+        </Routes>
+
+        {/* ✅ BARRA DEL COMBO (siempre visible abajo) */}
+        <ComboBar />
+
+      </div>
+    </CartProvider>
   );
 }
 

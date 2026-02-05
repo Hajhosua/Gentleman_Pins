@@ -1,19 +1,19 @@
 import { useState } from 'react';
+import { useCart } from './context/CartContext';
 
 import wppIcon from '../imagenes/whppp.svg';
 
-import pinBateria from '../imagenes/pisacorbatarayo.webp';
+import pisaRayoMetalico from '../imagenes/pisacorbatarayo.webp';
 import pisaPiano from '../imagenes/pisapiano.webp';
 import pisaCorne from '../imagenes/pisacorne.webp';
-import pisaCorbataGris from '../imagenes/pisacorbaragris.webp';
-import pisaRayo from '../imagenes/pisacorrr.webp';
+import pisaGris from '../imagenes/pisacorbaragris.webp';
+import pisaDorado from '../imagenes/pisacorrr.webp';
 
 import './css/Baquetas.css';
 
 interface Producto {
   id: number;
   nombre: string;
-  precio: string;
   imagenes: string[];
   wpp: string;
 }
@@ -22,41 +22,38 @@ const productos: Producto[] = [
   {
     id: 1,
     nombre: 'Pisacorbata de rayo metálico',
-    precio: '15.000',
-    imagenes: [pinBateria],
+    imagenes: [pisaRayoMetalico],
     wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pisacorbata%20de%20rayo',
   },
   {
     id: 2,
     nombre: 'Pisacorbata piano metálico',
-    precio: '15.000',
     imagenes: [pisaPiano],
     wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pisacorbata%20de%20piano',
   },
   {
     id: 3,
     nombre: 'Pisacorbata corno metálico',
-    precio: '15.000',
     imagenes: [pisaCorne],
     wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pisacorbata%20de%20corno',
   },
   {
     id: 4,
     nombre: 'Pisacorbata gris metálico',
-    precio: '15.000',
-    imagenes: [pisaCorbataGris],
+    imagenes: [pisaGris],
     wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pisacorbata%20gris',
   },
   {
     id: 5,
     nombre: 'Pisacorbata dorado metálico',
-    precio: '15.000',
-    imagenes: [pisaRayo],
+    imagenes: [pisaDorado],
     wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pisacorbata%20dorado',
   },
 ];
 
 export default function PisaCorbatas() {
+  const { addItem, items } = useCart();
+
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [imagenesSeleccionadas, setImagenesSeleccionadas] = useState<string[]>([]);
 
@@ -89,8 +86,28 @@ export default function PisaCorbatas() {
             <img src={prod.imagenes[0]} alt={prod.nombre} />
 
             <p>{prod.nombre}</p>
-            <p className="precio">${prod.precio}</p>
 
+            {/* ✅ Precio lo maneja el combo */}
+            <p className="precio">Promo por combo (1 a 4)</p>
+
+            {/* ✅ Botón Agregar al combo */}
+            <button
+              className="btn-combo"
+              disabled={items.length >= 4}
+              onClick={(e) => {
+                e.stopPropagation();
+                addItem({
+                  id: prod.id,
+                  nombre: prod.nombre,
+                  imagen: prod.imagenes[0],
+                  tipo: 'PisaCorbata',
+                });
+              }}
+            >
+              {items.length >= 4 ? 'Combo lleno (4)' : 'Agregar al combo'}
+            </button>
+
+            {/* ✅ WhatsApp individual */}
             <a
               href={prod.wpp}
               target="_blank"
@@ -107,6 +124,7 @@ export default function PisaCorbatas() {
         ))}
       </div>
 
+      {/* ✅ Modal galería */}
       {modalOpen && (
         <div className="modal" onClick={cerrarModal}>
           <span className="cerrar" onClick={cerrarModal}>

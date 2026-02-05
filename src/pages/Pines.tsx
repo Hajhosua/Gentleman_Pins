@@ -1,8 +1,9 @@
 import { useState } from 'react';
+import { useCart } from './context/CartContext';
 
 import wppIcon from '../imagenes/whppp.svg';
 
-import pinBateria from '../imagenes/pin_alas.webp';
+import pinAlas from '../imagenes/pin_alas.webp';
 import relojPin from '../imagenes/relojpin.webp';
 import pinPlatillo from '../imagenes/pin_platillo.webp';
 import pinAvion from '../imagenes/pinavion.webp';
@@ -20,27 +21,93 @@ import './css/Baquetas.css';
 interface Producto {
   id: number;
   nombre: string;
-  precio: string;
   imagen: string;
   wpp: string;
 }
 
+/**
+ * ✅ Nota: ya no dependemos del precio fijo aquí,
+ * porque el precio final lo calcula el combo por cantidad.
+ * Si quieres mostrar algo, ponemos "Promo por combo".
+ */
 const productos: Producto[] = [
-  { id: 1, nombre: 'Pin de Alas ', precio: '15.000', imagen: pinBateria, wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20de%20Alas' },
-  { id: 2, nombre: 'Pin reloj ', precio: '15.000', imagen: relojPin, wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20reloj' },
-  { id: 3, nombre: 'Pin de platillos ', precio: '15.000', imagen: pinPlatillo, wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20de%20platillos' },
-  { id: 4, nombre: 'Pin avión ', precio: '15.000', imagen: pinAvion, wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20avión' },
-  { id: 5, nombre: 'Pin platillo Zildjian ', precio: '15.000', imagen: platilloZil, wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20platillo%20Zildjian' },
-  { id: 6, nombre: 'Pin gafas negras ', precio: '15.000', imagen: gafasNegrasPin, wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20de%20gafas%20negras' },
-  { id: 7, nombre: 'Pin clave de sol ', precio: '15.000', imagen: claveDeSol, wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20clave%20de%20sol' },
-  { id: 8, nombre: 'Pin piano ', precio: '15.000', imagen: pianoPin, wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20de%20piano' },
-  { id: 9, nombre: 'Pin piano clásico ', precio: '15.000', imagen: otroPiano, wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20de%20piano%20clásico' },
-  { id: 10, nombre: 'Pin guitarra ', precio: '15.000', imagen: guitarraPin, wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20de%20guitarra' },
-  { id: 11, nombre: 'Pin micrófono ', precio: '15.000', imagen: microfono, wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20de%20micrófono' },
-  { id: 12, nombre: 'Pin gafas negras clásicas', precio: '15.000', imagen: gafasNegras, wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20de%20gafas%20negras%20clásicas' },
+  {
+    id: 1,
+    nombre: 'Pin de Alas',
+    imagen: pinAlas,
+    wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20de%20Alas',
+  },
+  {
+    id: 2,
+    nombre: 'Pin reloj',
+    imagen: relojPin,
+    wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20reloj',
+  },
+  {
+    id: 3,
+    nombre: 'Pin de platillos',
+    imagen: pinPlatillo,
+    wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20de%20platillos',
+  },
+  {
+    id: 4,
+    nombre: 'Pin avión',
+    imagen: pinAvion,
+    wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20avión',
+  },
+  {
+    id: 5,
+    nombre: 'Pin platillo Zildjian',
+    imagen: platilloZil,
+    wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20platillo%20Zildjian',
+  },
+  {
+    id: 6,
+    nombre: 'Pin gafas negras',
+    imagen: gafasNegrasPin,
+    wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20de%20gafas%20negras',
+  },
+  {
+    id: 7,
+    nombre: 'Pin clave de sol',
+    imagen: claveDeSol,
+    wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20clave%20de%20sol',
+  },
+  {
+    id: 8,
+    nombre: 'Pin piano',
+    imagen: pianoPin,
+    wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20de%20piano',
+  },
+  {
+    id: 9,
+    nombre: 'Pin piano clásico',
+    imagen: otroPiano,
+    wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20de%20piano%20clásico',
+  },
+  {
+    id: 10,
+    nombre: 'Pin guitarra',
+    imagen: guitarraPin,
+    wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20de%20guitarra',
+  },
+  {
+    id: 11,
+    nombre: 'Pin micrófono',
+    imagen: microfono,
+    wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20de%20micrófono',
+  },
+  {
+    id: 12,
+    nombre: 'Pin gafas negras clásicas',
+    imagen: gafasNegras,
+    wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20de%20gafas%20negras%20clásicas',
+  },
 ];
 
 export default function Pines() {
+  const { addItem, items } = useCart();
+
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [imagenSeleccionada, setImagenSeleccionada] = useState<string>('');
 
@@ -73,8 +140,28 @@ export default function Pines() {
             <img src={prod.imagen} alt={prod.nombre} />
 
             <p>{prod.nombre}</p>
-            <p className="precio">${prod.precio}</p>
 
+            {/* ✅ Ya no precio fijo por producto: se calcula por cantidad */}
+            <p className="precio">Promo por combo (1 a 4)</p>
+
+            {/* ✅ BOTÓN: Agregar al combo */}
+            <button
+              className="btn-combo"
+              disabled={items.length >= 4}
+              onClick={(e) => {
+                e.stopPropagation(); // ✅ no abre modal
+                addItem({
+                  id: prod.id,
+                  nombre: prod.nombre,
+                  imagen: prod.imagen,
+                  tipo: 'Pin',
+                });
+              }}
+            >
+              {items.length >= 4 ? 'Combo lleno (4)' : 'Agregar al combo'}
+            </button>
+
+            {/* ✅ WhatsApp individual (se mantiene) */}
             <a
               href={prod.wpp}
               target="_blank"
@@ -91,6 +178,7 @@ export default function Pines() {
         ))}
       </div>
 
+      {/* ✅ Modal */}
       {modalOpen && (
         <div className="modal" onClick={cerrarModal}>
           <span className="cerrar" onClick={cerrarModal}>
