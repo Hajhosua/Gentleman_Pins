@@ -31,7 +31,7 @@ function App() {
             <h1 className="titulo">Mi Tienda Online Musical</h1>
 
             <p className="descripcion">
-              Detalles musicales para regalar o usar todos los días<br />
+              Detalles musicales para regalar o usar con trajes<br />
               Pide tus pines y pisa corbatas fácilmente por WhatsApp.
             </p>
 <div className="promo-table">
