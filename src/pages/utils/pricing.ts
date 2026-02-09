@@ -1,7 +1,7 @@
 export const TIER_UNIT_PRICE: Record<number, number> = {
-  1: 18000,
-  2: 16000,
-  3: 13000,
+  1: 16000,
+  2: 14000,
+  3: 12000,
   4: 10000,
 };
 

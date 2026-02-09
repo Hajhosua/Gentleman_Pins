@@ -43,20 +43,20 @@ function App() {
 
   <div className="promo-row">
     <span>1 unidad</span>
-    <span>$18.000</span>
-    <span>$18.000</span>
+    <span>$16.000</span>
+    <span>$16.000</span>
   </div>
 
   <div className="promo-row">
     <span>2 unidades</span>
-    <span>$16.000</span>
-    <span>$32.000</span>
+    <span>$14.000</span>
+    <span>$28.000</span>
   </div>
 
   <div className="promo-row">
     <span>3 unidades</span>
-    <span>$13.000</span>
-    <span>$39.000</span>
+    <span>$12.000</span>
+    <span>$36.000</span>
   </div>
 
   <div className="promo-row">

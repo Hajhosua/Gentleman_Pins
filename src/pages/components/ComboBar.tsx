@@ -60,7 +60,7 @@ export default function ComboBar() {
       )}
 
       <div className="comboHint">
-        Promo: 1=$18.000 • 2=$16.000 c/u • 3=$13.000 c/u • 4=$10.000 c/u
+      Promo: 1=$16.000 • 2=$14.000 c/u • 3=$12.000 c/u • 4=$10.000 c/u
       </div>
     </div>
   );
