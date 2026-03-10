@@ -399,5 +399,22 @@ body::before{
   opacity: .55;
   cursor: not-allowed;
 }
+}
 
+.btn-combo{
+  width: 140px;        /* 👈 ESTRECHO FIJO */
+  border: none;
+
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+
+  background: #226be0;
+  color: #fff;
+
+  box-shadow: 0 6px 14px rgba(0,0,0,0.10);
+  transition: .15s ease;
+  margin-top: 6px;
 }

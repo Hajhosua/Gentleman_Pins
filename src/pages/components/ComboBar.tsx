@@ -1,25 +1,31 @@
+// src/pages/components/ComboBar.tsx
+
 import { useCart } from '../context/CartContext';
-import { formatCOP } from '../utils/pricing';
+import { formatCOP } from '../utils/pricing'; // 👈 RUTA CORRECTA
 import './ComboBar.css';
 
 export default function ComboBar() {
-  const { items, unitPrice, total, clear, removeOne, buildWhatsappText } = useCart();
+  const { items, totals, clear, removeOne, buildWhatsappText } = useCart();
 
-  const phone = '573218275703'; // tu número sin +
+  const phone = '573218275703';
 
   const link =
     items.length === 0
       ? '#'
-      : `https://wa.me/${phone}?text=${encodeURIComponent(buildWhatsappText())}`;
+      : `https://wa.me/${phone}?text=${encodeURIComponent(
+          buildWhatsappText()
+        )}`;
 
   return (
     <div className="comboBar">
+      {/* ---------------- TOP ---------------- */}
       <div className="comboTop">
         <div className="comboInfo">
           <strong>Combo:</strong> {items.length}/4
           <span className="comboSep">•</span>
+
           <span className="comboPrice">
-            ${formatCOP(unitPrice)} c/u — <b>Total:</b> ${formatCOP(total)}
+            <b>Total:</b> ${formatCOP(totals.general.total)}
           </span>
         </div>
 
@@ -44,23 +50,51 @@ export default function ComboBar() {
         </div>
       </div>
 
+      {/* ---------------- LISTA ---------------- */}
       {items.length > 0 && (
-        <div className="comboList">
-          {items.map((it, idx) => (
-            <button
-              key={`${it.tipo}-${it.id}-${idx}`}
-              className="comboChip"
-              title="Quitar 1"
-              onClick={() => removeOne(idx)}
-            >
-              {it.tipo}: {it.nombre} ✕
-            </button>
-          ))}
-        </div>
+        <>
+          <div className="comboList">
+            {items.map((it, idx) => (
+              <button
+                key={`${it.tipo}-${it.id}-${idx}`}
+                className="comboChip"
+                title="Quitar 1"
+                onClick={() => removeOne(idx)}
+              >
+                {it.tipo}: {it.nombre} ✕
+              </button>
+            ))}
+          </div>
+
+          {/* ---------------- DETALLES ---------------- */}
+          <div className="comboHint">
+            Pins: {totals.pins.qty}
+            {totals.pins.qty > 0
+              ? ` — Base: $${formatCOP(
+                  totals.pins.subtotalBase
+                )} — Descuento: -$${formatCOP(
+                  totals.pins.descuento
+                )} — Subtotal: $${formatCOP(totals.pins.total)}`
+              : ''}
+
+            {' • '}
+
+            Pisa Corbatas: {totals.pisas.qty}
+            {totals.pisas.qty > 0
+              ? ` — Base: $${formatCOP(
+                  totals.pisas.subtotalBase
+                )} — Descuento: -$${formatCOP(
+                  totals.pisas.descuento
+                )} — Subtotal: $${formatCOP(totals.pisas.total)}`
+              : ''}
+          </div>
+        </>
       )}
 
+      {/* ---------------- NOTA ---------------- */}
       <div className="comboHint">
-      Promo: 1=$16.000 • 2=$14.000 c/u • 3=$12.000 c/u • 4=$10.000 c/u
+        Descuento global: por cada unidad adicional (hasta 4) se descuenta{' '}
+        <b>$2.000</b> del subtotal.
       </div>
     </div>
   );

@@ -4,13 +4,13 @@ import { Routes, Route, NavLink, Navigate } from 'react-router-dom';
 import Pines from './pages/Pines';
 import PisaCorbatas from './pages/PisaCorbatas';
 
-import logo from './imagenes/logo/pi.png';
+import logo from './imagenes/logo/pinn.jpg';
 import './App.css';
 
 /* ✅ Context (Combo/Carrito) */
 import { CartProvider } from './pages/context/CartContext';
 
-/* ✅ Barra del combo (PASO 3B) */
+/* ✅ Barra del combo */
 import ComboBar from './pages/components/ComboBar';
 
 /* ================= COMPONENT ================= */
@@ -28,44 +28,51 @@ function App() {
           />
 
           <div className="header-texto">
-            <h1 className="titulo">Mi Tienda Online Musical</h1>
+            <h1 className="titulo"> Tienda Online Musical</h1>
 
             <p className="descripcion">
-              Detalles musicales para regalar o usar con trajes<br />
-              Pide tus pines y pisa corbatas fácilmente por WhatsApp.
+              Detalles para regalar o usar con trajes.<br />
+              Arma tu combo y obtén descuentos automáticos.
             </p>
-<div className="promo-table">
-  <div className="promo-row header">
-    <span>Cantidad</span>
-    <span>Precio c/u</span>
-    <span>Total</span>
-  </div>
 
-  <div className="promo-row">
-    <span>1 unidad</span>
-    <span>$16.000</span>
-    <span>$16.000</span>
-  </div>
+            {/* ================= TABLA PSICOLÓGICA ================= */}
+            <div className="promo-table">
+              <div className="promo-row header">
+                <span>Cantidad</span>
+                <span>Beneficio</span>
+                <span>Ahorro</span>
+              </div>
 
-  <div className="promo-row">
-    <span>2 unidades</span>
-    <span>$14.000</span>
-    <span>$28.000</span>
-  </div>
+              <div className="promo-row">
+                <span>1 unidad</span>
+                <span>Precio normal</span>
+                <span>—</span>
+              </div>
 
-  <div className="promo-row">
-    <span>3 unidades</span>
-    <span>$12.000</span>
-    <span>$36.000</span>
-  </div>
+              <div className="promo-row destacado">
+                <span>2 unidades</span>
+                <span style={{ color: '#0a0' }}>Descuento activado</span>
+                <span style={{ color: '#0a0' }}>- $2.000</span>
+              </div>
 
-  <div className="promo-row">
-    <span>4 unidades</span>
-    <span>$10.000</span>
-    <span>$40.000</span>
-  </div>
-</div>
-           
+              <div className="promo-row">
+                <span>3 unidades</span>
+                <span style={{ color: '#0a0' }}>Mayor ahorro</span>
+                <span style={{ color: '#0a0' }}>- $4.000</span>
+              </div>
+
+              <div className="promo-row recomendado">
+                <span>4 unidades</span>
+                <span style={{ color: '#d29d00' }}><b>Mejor precio 🔥</b></span>
+                <span style={{ color: '#d29d00' }}><b>- $6.000</b></span>
+              </div>
+            </div>
+
+            <p className="promo-texto">
+              Entre más llevas, <b>más ahorras</b>.  
+              El descuento se aplica automáticamente al total.
+            </p>
+
           </div>
         </header>
 
@@ -87,7 +94,7 @@ function App() {
           <Route path="/pisacorbat" element={<PisaCorbatas />} />
         </Routes>
 
-        {/* ✅ BARRA DEL COMBO (siempre visible abajo) */}
+        {/* ================= COMBO BAR ================= */}
         <ComboBar />
 
       </div>
