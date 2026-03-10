@@ -1,8 +1,7 @@
 import React, { createContext, useContext, useMemo, useState } from 'react';
 import {
-  subtotalConDescuentoGlobal,
+  
   subtotalSinDescuento,
-  totalGeneral,
   descuentoGlobal,
   formatCOP,
 } from '../utils/pricing'; // 👈 ruta correcta (sube 2 niveles)
