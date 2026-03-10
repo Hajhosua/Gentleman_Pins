@@ -12,6 +12,8 @@ import pisacorbata_negro_dorado from '../imagenes/pisacorbata_negro_con_dorado.j
 import pisacorbatablancocompleto from '../imagenes/pisacorbata_blancocompleto.jpg';
 import pisacorbataazulconblanco from '../imagenes/pisacorbata_azul_conblanco.jpg';
 import pisacorbata_negroconblanco from '../imagenes/pisacorbatanegro_con_blanco.jpg';
+import pisacorbatagrisconcadena from '../imagenes/pisacorbatagrisconcadena.jpg';
+
 
 import './css/Baquetas.css';
 import { formatCOP } from './utils/pricing';
@@ -29,6 +31,13 @@ const productos: Producto[] = [
   /* ============================
      PRIMERO: Pisacorbata triangulado
      ============================ */
+     {
+    id: 1,
+    nombre: 'Pisacorbata de rayo metálico',
+    imagenes: [pisaRayoMetalico],
+    wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pisacorbata%20de%20rayo',
+    precio: 16000,
+  },
 
   {
     id: 6,
@@ -37,6 +46,7 @@ const productos: Producto[] = [
     wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pisacorbata%20triangulado',
     precio: 20000,
   },
+  
 
   {
     id: 2,
@@ -45,56 +55,51 @@ const productos: Producto[] = [
     wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pisacorbata%20de%20piano',
     precio: 19000,
   },
-
+{
+  id: 11,
+  nombre: 'Pisacorbata gris con cadena',
+  imagenes: [pisacorbatagrisconcadena],
+  wpp: 'https://wa.me/573218275703?text=Hola,%20quiero%20el%20pisacorbata%20gris%20con%20cadena',
+  precio: 18000, // ajusta el precio si manejas otro
+},
   {
     id: 7,
     nombre: 'Pisacorbata negro con dorado',
     imagenes: [pisacorbata_negro_dorado],
     wpp: 'https://wa.me/573218275703?text=Hola,%20quiero%20el%20pisacorbata%20negro%20con%20dorado',
-    precio: 19000,
+    precio: 18000,
   },
   {
     id: 8,
     nombre: 'Pisacorbata blanco completo',
     imagenes: [pisacorbatablancocompleto],
     wpp: 'https://wa.me/573218275703?text=Hola,%20quiero%20el%20pisacorbata%20blanco%20completo',
-    precio: 19000,
+    precio: 18000,
   },
   {
     id: 9,
     nombre: 'Pisacorbata azul con blanco',
     imagenes: [pisacorbataazulconblanco],
     wpp: 'https://wa.me/573218275703?text=Hola,%20quiero%20el%20pisacorbata%20azul%20con%20blanco',
-    precio: 19000,
+    precio: 18000,
   },
   {
     id: 10,
     nombre: 'Pisacorbata negro con blanco',
     imagenes: [pisacorbata_negroconblanco],
     wpp: 'https://wa.me/573218275703?text=Hola,%20quiero%20el%20pisacorbata%20negro%20con%20blanco',
-    precio: 19000,
+    precio: 18000,
   },
 
   /* ============================
      PRODUCTOS ANTERIORES
      ============================ */
-
-  {
-    id: 1,
-    nombre: 'Pisacorbata de rayo metálico',
-    imagenes: [pisaRayoMetalico],
-    wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pisacorbata%20de%20rayo',
-    precio: 16000,
-  },
- 
- 
-  
   {
     id: 4,
     nombre: 'Pisacorbata gris metálico',
     imagenes: [pisaGris],
-    wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pisacorbata%20gris',
-    precio: 17000,
+    wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pisacorbata%20gris%rayo',
+    precio: 16000,
   },
   {
     id: 5,

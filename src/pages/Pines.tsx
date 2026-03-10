@@ -19,21 +19,13 @@ import pin_guitarra from '../imagenes/pin_de_guitarra.png';
 import bandera_republica from '../imagenes/pin_bandera_de_republica_dominicana.jpg';
 import pinbanderadecolombia from '../imagenes/pin_colombia.jpg';
 import pinbandera_eeuu from '../imagenes/pin_de_bandera_estados_unidos.jpg';
-import pn_guitarra_electrica from '../imagenes/pin_de_guitarraelectrica.png';
 import pingafasdorado from '../imagenes/pin_gafas_dorado.jpg';
 import pinpianoconpartitura from '../imagenes/pin_piano_partitura.jpg';
 import pinpiano_otro_partitura from '../imagenes/pin_piano_partituras_.jpg';
 import pindealas from '../imagenes/pindealas.png';
-
-
-
-
-
-
-
-
-
-
+import banderadejapon from '../imagenes/pin_banderade_japon.jpg';
+import pindemicrofonogris from '../imagenes/pindemicrofonogis.avif';
+import pinbanderaitalia from '../imagenes/pinbanderaitalia.avif';
 
 import './css/Baquetas.css';
 import { formatCOP } from './utils/pricing';
@@ -83,6 +75,20 @@ const productos: Producto[] = [
     precio: 16000,
   },
   {
+    id: 13,
+    nombre: 'Pin saxofón',
+    imagen: pinsaxofon,
+    wpp: 'https://wa.me/573218275703?text=Hola,%20quiero%20el%20pin%20de%20saxofón',
+    precio: 19000,
+  },
+  {
+    id: 14,
+    nombre: 'Pin guitarra electrica negra',
+    imagen: pin_guitarra,
+    wpp: 'https://wa.me/573218275703?text=Hola,%20quiero%20el%20pin%20de%20guitarra%20electrica',
+    precio: 18000,
+  },
+  {
     id: 5,
     nombre: 'Pin platillo Zildjian',
     imagen: platilloZil,
@@ -94,7 +100,7 @@ const productos: Producto[] = [
     nombre: 'Pin gafas negras',
     imagen: gafasNegrasPin,
     wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20de%20gafas%20negras',
-    precio: 17000,
+    precio: 16000,
   },
   {
     id: 7,
@@ -108,8 +114,15 @@ const productos: Producto[] = [
     nombre: 'Pin piano',
     imagen: pianoPin,
     wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20de%20piano',
-    precio: 18000,
+    precio: 17000,
   },
+  {
+  id: 23,
+  nombre: 'Pin micrófono gris',
+  imagen: pindemicrofonogris,
+  wpp: 'https://wa.me/573218275703?text=Hola,%20quiero%20el%20pin%20de%20micr%C3%B3fono%20gris',
+  precio: 18000, // ajusta el precio si lo deseas
+},
   {
     id: 9,
     nombre: 'Pin piano clásico',
@@ -122,7 +135,7 @@ const productos: Producto[] = [
     nombre: 'Pin guitarra',
     imagen: guitarraPin,
     wpp: 'https://wa.me/573218275703?text=Hola,%20estoy%20interesado%20en%20el%20pin%20de%20guitarra',
-    precio: 18000,
+    precio: 17000,
   },
   {
     id: 11,
@@ -143,20 +156,7 @@ const productos: Producto[] = [
      NUEVOS PRODUCTOS (los que pediste meter)
      ========================================= */
 
-  {
-    id: 13,
-    nombre: 'Pin saxofón',
-    imagen: pinsaxofon,
-    wpp: 'https://wa.me/573218275703?text=Hola,%20quiero%20el%20pin%20de%20saxofón',
-    precio: 19000,
-  },
-  {
-    id: 14,
-    nombre: 'Pin guitarra clásica dorada',
-    imagen: pin_guitarra,
-    wpp: 'https://wa.me/573218275703?text=Hola,%20quiero%20el%20pin%20de%20guitarra%20clásica',
-    precio: 18000,
-  },
+  
   {
     id: 15,
     nombre: 'Pin bandera República Dominicana',
@@ -164,6 +164,21 @@ const productos: Producto[] = [
     wpp: 'https://wa.me/573218275703?text=Hola,%20quiero%20el%20pin%20de%20la%20bandera%20de%20República%20Dominicana',
     precio: 15000,
   },
+  {
+  id: 19,
+  nombre: 'Pin bandera Japón',
+  imagen: banderadejapon,
+  wpp: 'https://wa.me/573218275703?text=Hola,%20quiero%20el%20pin%20de%20la%20bandera%20de%20Jap%C3%B3n',
+  precio: 15000, // ajusta si quieres otro precio
+},
+
+{
+  id: 24,
+  nombre: 'Pin bandera Italia',
+  imagen: pinbanderaitalia,
+  wpp: 'https://wa.me/573218275703?text=Hola,%20quiero%20el%20pin%20de%20la%20bandera%20de%20Italia',
+  precio: 16000, // ✅ ajusta si manejas otro precio
+},
   {
     id: 16,
     nombre: 'Pin bandera Colombia',
@@ -178,13 +193,7 @@ const productos: Producto[] = [
     wpp: 'https://wa.me/573218275703?text=Hola,%20quiero%20el%20pin%20de%20la%20bandera%20de%20Estados%20Unidos',
     precio: 16000,
   },
-  {
-    id: 18,
-    nombre: 'Pin guitarra eléctrica',
-    imagen: pn_guitarra_electrica,
-    wpp: 'https://wa.me/573218275703?text=Hola,%20quiero%20el%20pin%20de%20guitarra%20eléctrica',
-    precio: 18000,
-  },
+  
   
   {
     id: 20,

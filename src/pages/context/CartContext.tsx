@@ -59,7 +59,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const clear = () => setItems([]);
 
-  /** ===== Cálculo de totales ===== */
+
   /** ===== Cálculo de totales ===== */
 const totals = useMemo(() => {
   const pins = items.filter(i => i.tipo === 'Pin');
